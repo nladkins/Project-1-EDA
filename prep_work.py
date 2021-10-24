@@ -45,8 +45,8 @@ dfs = [df_raw, df_labels, df_raw_us]
 dfs_list = ['df_raw', 'df_labels', 'df_raw_us']
 zipped = dict(zip(dfs_list, dfs))
 
-for k,v in zipped.items():
+for k, v in zipped.items():
     filename = k
-    v.to_pickle(os.path.join('data', filename+ '.pickle'))
+    v.to_pickle(os.path.join('data', filename + '.pickle'))
 
-#%%
+# %%
