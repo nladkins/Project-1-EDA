@@ -28,11 +28,13 @@ def column_connector(col_name, df, return_df):
 
 def filter_data(df, filter_val, filter_column):
     """
+    Args:
+        df: the dataframe you want to search.
+        filter_val: the value you want to find and keep visible after filtering.
+        filter_column: the column you want to check for the value in
 
-    :param: df: the dataframe you want to search.
-    :param: filter_val: the value you want to find and keep visible after filtering.
-    :param: filter_column: the column you want to check for the value in
-    :return: the filtered dataframe only showing the values you want to see.
+    Returns:
+        the filtered dataframe only showing the values you want to see.
 
     Examples:
         filter_data(df_raw, 7, 'age') returns a dataframe only showing people >75 (because 7 is the int that
@@ -45,11 +47,12 @@ def filter_data(df, filter_val, filter_column):
 
 def value_connector(lookup_val, lookup_col, return_col):
     """
-
-    :param lookup_val: the value from the raw data you want to lookup
-    :param lookup_col: the name of the column holding your lookup value
-    :param return_col: the name of the column you want to pull the corresponding value from.
-    :return: the equivalent value from the labels column
+    Args:
+        lookup_val: the value from the raw data you want to lookup
+        lookup_col: the name of the column holding your lookup value
+        return_col: the name of the column you want to pull the corresponding value from.
+    Returns:
+        the equivalent value from the labels column
 
     Note: to avoid having to manually find the filter_column, use this fcn with column_connector.
 
