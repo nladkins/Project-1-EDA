@@ -17,8 +17,7 @@ fp = r'data/sources'
 df_raw = pd.read_pickle('data/df_raw.pickle')
 
 df_labels = pd.read_pickle('data/df_labels.pickle'
-)
-
+                           )
 
 # df_raw_us = f.filter_data(df_raw, 1, 'country')
 
@@ -56,3 +55,20 @@ for k, v in zipped.items():
 
 # %%
 f.value_connector(1, df_raw['age'], df_labels[(f.column_connector('age', df_raw, df_labels))])
+
+# %%
+# * testing stuff for norman
+import pandas as pd
+import fcns as f
+
+
+# %%
+usdf = pd.read_pickle('data/df_raw_us.pickle')
+
+cat_list = 'diabetes cardiovascular_disorders obesity respiratory_infections respiratory_disorders_exam ' \
+           'gastrointestinal_disorders' \
+           ' chronic_kidney_disease autoimmune_disease'.split()
+
+sel = usdf[cat_list]
+filt = sel.where(sel[cat_list] == 1)
+
