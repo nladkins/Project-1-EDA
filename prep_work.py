@@ -25,18 +25,18 @@ df_labels = pd.read_pickle('data/df_labels.pickle'
 # %%
 
 # testing function
-print(f.filter_data(7, 'age', df_raw))
-f.value_connector(1, df_raw['age'], df_labels[(f.column_connector('age'))])
-
-connected = {}
-
-# make dict where k:v is raw_col:label_col
-for col in df_raw.columns:
-    connected[col] = f.column_connector(col)
-
-# make a df from the dict, then save to excel
-k = list(connected.keys())
-v = list(connected.values())
+# print(f.filter_data(7, 'age', df_raw))
+# f.value_connector(1, df_raw['age'], df_labels[(f.column_connector('age'))])
+#
+# connected = {}
+#
+# # make dict where k:v is raw_col:label_col
+# for col in df_raw.columns:
+#     connected[col] = f.column_connector(col)
+#
+# # make a df from the dict, then save to excel
+# k = list(connected.keys())
+# v = list(connected.values())
 #
 # d = pd.DataFrame.from_dict(connected.items())
 # d.to_excel('column_lookups.xlsx')
