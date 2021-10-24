@@ -46,6 +46,9 @@ def filter_data(df, filter_val, filter_column):
 
 
 def value_connector(lookup_val, lookup_col, return_col):
+    # TODO: I slightly broke this function while refacrtoring it. It will still work but is awkward to use. I will
+    #  fix soon.
+
     """
     Args:
         lookup_val: the value from the raw data you want to lookup
@@ -58,9 +61,9 @@ def value_connector(lookup_val, lookup_col, return_col):
 
     Examples:
         import fcns as f
-        f.value_connector(1, df_raw['age'], df_labels[(f.column_connector('age'))])
+        f.value_connector(1, df_raw['age'], df_labels[(f.column_connector('age', df_raw, df_labels))])
 
-        will return
+        will return '18 - 25'
         The above uses the column_connector to retrieve the name of the df_labels column you're interested in.
         This is much simpler than manually looking up and comparing column names.
     """

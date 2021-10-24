@@ -7,15 +7,20 @@ import fcns as f
 
 fp = r'data/sources'
 
-df_raw = pd.read_excel(
-        os.path.join(fp, 'manuscript_raw_data.xlsx')
+# df_raw = pd.read_excel(
+#         os.path.join(fp, 'manuscript_raw_data.xlsx')
+# )
+#
+# df_labels = pd.read_excel(
+#         os.path.join(fp, 'labels_for_manuscript_raw_data.xlsx')
+# )
+df_raw = pd.read_pickle('data/df_raw.pickle')
+
+df_labels = pd.read_pickle('data/df_labels.pickle'
 )
 
-df_labels = pd.read_excel(
-        os.path.join(fp, 'labels_for_manuscript_raw_data.xlsx')
-)
 
-df_raw_us = f.filter_data(df_raw, 1, 'country')
+# df_raw_us = f.filter_data(df_raw, 1, 'country')
 
 # %%
 
@@ -50,3 +55,4 @@ for k, v in zipped.items():
     v.to_pickle(os.path.join('data', filename + '.pickle'))
 
 # %%
+f.value_connector(1, df_raw['age'], df_labels[(f.column_connector('age', df_raw, df_labels))])
