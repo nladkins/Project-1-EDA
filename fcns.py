@@ -74,12 +74,16 @@ def value_connector(lookup_val, lookup_col, return_col):
 
 def column_converter(column):
     """Converts excel column name into a numerical value."""
-    b = 0
-    column = column.upper()
-    numerical_list = [ord(letter) - 64 for letter in column]
-    position_list = list(range(len(column)))[::-1]
-    for i, j in zip(position_list, numerical_list):
-        a = j * 26 ** i
-        b += a
+    try:
+        if column.isalpha():
+            b = 0
+            column = column.upper()
+            numerical_list = [ord(letter) - 64 for letter in column]
+            position_list = list(range(len(column)))[::-1]
+            for i, j in zip(position_list, numerical_list):
+                a = j * 26 ** i
+                b += a
 
-    return b
+            return b
+    except AttributeError:
+        print('Input must be letters only.')
