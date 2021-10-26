@@ -72,7 +72,6 @@ def value_connector(lookup_val, lookup_col, return_col):
     return output
 
 
-# %%
 def column_converter(column):
     """Converts excel column name into a numerical value."""
     b = 0
