@@ -70,3 +70,17 @@ def value_connector(lookup_val, lookup_col, return_col):
     output_dict = dict(zip(lookup_col.unique(), return_col.unique()))
     output = output_dict[lookup_val]
     return output
+
+
+# %%
+def column_converter(column):
+    """Converts excel column name into a numerical value."""
+    b = 0
+    column = column.upper()
+    numerical_list = [ord(letter) - 64 for letter in column]
+    position_list = list(range(len(column)))[::-1]
+    for i, j in zip(position_list, numerical_list):
+        a = j * 26 ** i
+        b += a
+
+    return b
