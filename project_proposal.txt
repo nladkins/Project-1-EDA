@@ -1,0 +1,29 @@
+Project Title:  COVID’s effects on socially beneficial behavior outcomes
+
+Team Members:  Dan Herfurth, Kristen Hanold, Ty Pleasant, Norman Adkins
+
+Project Description:  Assessing available data to determine how certain socially beneficial behaviors were influenced by the COVID-19 outbreak
+
+Research Questions:
+
+    1. How do comorbidities affect lifestyle changes during COVID-19?
+    2. How education and socioeconomic status affected worrying about comorbidities?
+    3. Did COVID-19 influence changes in pre-existing health conditions before and during the pandemic?
+
+Potential datasets to be used:
+
+    1. Stanford University
+    2. U.S. Center for Disease Control and Prevention (CDC)
+    3. UK Office of National Statistics
+    4. Johns Hopkins
+    5. Others may be identified at a later time.
+
+Rough breakdown of tasks:
+
+    1. Identify the data sources
+    2. Clean the data we want to use
+    3. Break down the flow of what we want the code to perform addressing our research question
+    4. Break this into 3-4 branches, if appropriate
+    5. Build the code including visualizations to help narrow our focus
+    6. Interpret our findings
+    7. Report our findings
