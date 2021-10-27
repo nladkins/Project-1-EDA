@@ -114,12 +114,26 @@ df_us = pd.read_pickle('data/df_raw_us.pickle')
 
 cos_adjusted = df_us[cat_list].replace(
         {
-               2:0
-        }, inplace=True
+                2: 0
+        },
 )
 
-idx = list(cos_adjusted.index)
+df_us.columns
+# idx = list(cos_adjusted.index)
 
+# %%
 df_us_filt = df_us.loc[idx]
 len(df_us_filt.columns)
 df_us_filt.diabetes
+# %%
+
+# ! Testing value fcn
+
+import fcns as f
+import pandas as pd
+
+df = pd.read_pickle('data/df_raw.pickle')
+df_labels = pd.read_pickle('data/df_labels.pickle')
+# f.column_connector('diabetes', df, df_labels)
+f.column_connector('diabetes', df, df_labels)
+f.value_connector(1, df['diabetes'], f.column_connector('diabetes', df, df_labels))

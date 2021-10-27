@@ -19,9 +19,13 @@ def column_connector(col_name, df, return_df):
         column_connector(age) will raise an exception.
     """
     try:
-        col_idx = df.columns.get_loc(col_name)
-        returned_name = return_df.columns[col_idx]
-        return returned_name
+        if len(df.columns) == len(return_df):
+            col_idx = df.columns.get_loc(col_name)
+            returned_name = return_df.columns[col_idx]
+            return returned_name
+        else:
+            print('These two dataframes do not have the same number of columns.')
+
     except NameError:
         print('the column name passed to the fcn must be a str or a variable holding a str.')
 
@@ -45,31 +49,30 @@ def filter_data(df, filter_val, filter_column):
     return filtered_df
 
 
-def value_connector(lookup_val, lookup_col, return_col):
-    # TODO: I slightly broke this function while refacrtoring it. It will still work but is awkward to use. I will
-    #  fix soon.
-
-    """
-    Args:
-        lookup_val: the value from the raw data you want to lookup
-        lookup_col: the name of the column holding your lookup value
-        return_col: the name of the column you want to pull the corresponding value from.
-    Returns:
-        the equivalent value from the labels column
-
-    Note: to avoid having to manually find the filter_column, use this fcn with column_connector.
-
-    Examples:
-        import fcns as f
-        f.value_connector(1, df_raw['age'], df_labels[(f.column_connector('age', df_raw, df_labels))])
-
-        will return '18 - 25'
-        The above uses the column_connector to retrieve the name of the df_labels column you're interested in.
-        This is much simpler than manually looking up and comparing column names.
-    """
-    output_dict = dict(zip(lookup_col.unique(), return_col.unique()))
-    output = output_dict[lookup_val]
-    return output
+# * not currently worth the time
+# def value_connector(lookup_val, lookup_col, return_col):
+#
+#     """
+#     Args:
+#         lookup_val: the value from the raw data you want to lookup
+#         lookup_col: the name of the column holding your lookup value
+#         return_col: the name of the column you want to pull the corresponding value from.
+#     Returns:
+#         the equivalent value from the labels column
+#
+#     Note: to avoid having to manually find the filter_column, use this fcn with column_connector.
+#
+#     Examples:
+#         import fcns as f
+#         f.value_connector(1, df_raw['age'], df_labels[(f.column_connector('age', df_raw, df_labels))])
+#
+#         will return '18 - 25'
+#         The above uses the column_connector to retrieve the name of the df_labels column you're interested in.
+#         This is much simpler than manually looking up and comparing column names.
+#     """
+#     output_dict = dict(zip([lookup_col].unique(), [return_col].unique()))
+#     output = output_dict[lookup_val]
+#     return output
 
 
 def column_converter(column):
