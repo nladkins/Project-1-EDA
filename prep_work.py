@@ -101,15 +101,25 @@ import numpy as np
 #
 # print(len(no_comorbs), len(comorbs))
 
-#%%
+# %%
 from fcns import column_converter
 import pandas as pd
 
-
-cat_list = 'education income diabetes cardiovascular_disorders obesity respiratory_infections respiratory_disorders_exam ' \
+cat_list = 'education income diabetes cardiovascular_disorders obesity respiratory_infections ' \
+           'respiratory_disorders_exam ' \
            'gastrointestinal_disorders' \
            ' chronic_kidney_disease autoimmune_disease'.split()
 
-df_us = pd.read_pickle('data/df_raw_us.pickle')[cat_list]
+df_us = pd.read_pickle('data/df_raw_us.pickle')
 
-ed = df_us.groupby('education')
+cos_adjusted = df_us[cat_list].replace(
+        {
+               2:0
+        }, inplace=True
+)
+
+idx = list(cos_adjusted.index)
+
+df_us_filt = df_us.loc[idx]
+len(df_us_filt.columns)
+df_us_filt.diabetes
