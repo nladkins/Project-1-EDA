@@ -90,3 +90,11 @@ def column_converter(column):
             return b
     except AttributeError:
         print('Input must be letters only.')
+
+
+def get_comorb_df(df_tofilter):
+    repl_list = 'diabetes cardiovascular_disorders obesity respiratory_infections ' \
+                'respiratory_disorders_exam ' \
+                'gastrointestinal_disorders' \
+                ' chronic_kidney_disease autoimmune_disease'.split()
+
