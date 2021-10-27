@@ -108,7 +108,7 @@ import pandas as pd
 cat_list = 'education income diabetes cardiovascular_disorders obesity respiratory_infections ' \
            'respiratory_disorders_exam ' \
            'gastrointestinal_disorders' \
-           ' chronic_kidney_disease autoimmune_disease'.split()
+           ' chronic_kidney_disease autoimmune_disease chronic_fatigue_syndrome_a'.split()
 
 df_us = pd.read_pickle('data/df_raw_us.pickle')
 
