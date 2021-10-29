@@ -111,6 +111,8 @@ def drop_replace(df, drop_cols=False, comorbs=False):
     #
     # if module_name not in sys.modules:
     #     import numpy as np
+    if 'race_and_ethnicity' in df.columns:
+        df.rename(columns={'race_and_ethnicity': 'race'}, inplace=True)
 
     cat_list = \
         ['study_id',
@@ -159,11 +161,11 @@ def drop_replace(df, drop_cols=False, comorbs=False):
 
     race_rename = {
             0: 'native_american',
-            # 1: 'asian',
+            1: 'asian',
             2: 'polynesian',
-            # 3: 'black',
-            # 4: 'white',
-            # 5: 'hispanic',
+            3: 'black',
+            4: 'white',
+            5: 'hispanic',
             6: '>1',
             7: 'no answer'
     }
