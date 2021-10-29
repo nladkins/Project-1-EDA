@@ -107,10 +107,10 @@ def get_comorb_df(df_tofilter):
 def drop_replace(df, drop_cols=False, comorbs=False):
     import sys
 
-    module_name = 'pandas'
-
-    if module_name not in sys.modules:
-        import numpy as np
+    # module_name = 'pandas'
+    #
+    # if module_name not in sys.modules:
+    #     import numpy as np
 
     cat_list = \
         ['study_id',

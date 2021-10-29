@@ -243,13 +243,14 @@ race_dict = {
         5: 'hispanic'
 }
 
-corrs = pd.read_excel('corrs.xlsx')
-
+df_cat = df_us[cat_list]
+# corrs = pd.read_excel('corrs.xlsx')
+corrs = df_us[cat_list].groupby('race').corr()
 dividers = np.linspace(-1, 1, 6)
 
 df_list = []
 
-for i in df_cat_drop['race'].unique():
+for i in df_cat['race'].unique():
 
     my_colors = sns.color_palette('rocket', n_colors=5)
     try:
@@ -332,27 +333,27 @@ cmaps = ['Accent', 'Accent_r', 'Blues', 'Blues_r', 'BrBG', 'BrBG_r', 'BuGn', 'Bu
 #     plt.savefig(f'C:/users/danie/desktop/cmaps/{map}.png')
 #     plt.close(fig)
 
-# for i in range(len(df.race.unique())):
-#     corrs = df_cat.groupby('race').corr()
-#     df = corrs.query(str(i))
-#
-#     mask = np.zeros_like(white_df)
-#     mask[np.triu_indices_from(mask)] = True
-#
-#     fig, ax = plt.subplots(figsize=(15, 12))
-#     # im = ax.imshow(white_df)
-#     sns.heatmap(
-#             white_df,
-#             xticklabels=white_df.columns,
-#             yticklabels=white_df.columns,
-#             annot=True,
-#             cmap='viridis_r',
-#             square=True,
-#             mask=mask,
-#             center=0
-#     )
-#
-#     plt.tight_layout(pad=0.5)
+for i in range(len(df.race.unique())):
+    corrs = df_cat.groupby('race').corr()
+    df = corrs.query(str(i))
+
+    mask = np.zeros_like(white_df)
+    mask[np.triu_indices_from(mask)] = True
+
+    fig, ax = plt.subplots(figsize=(15, 12))
+    # im = ax.imshow(white_df)
+    sns.heatmap(
+            white_df,
+            xticklabels=white_df.columns,
+            yticklabels=white_df.columns,
+            annot=True,
+            cmap='viridis_r',
+            square=True,
+            mask=mask,
+            center=0
+    )
+
+    plt.tight_layout(pad=0.5)
 
 # %%
 race_rename = {
@@ -429,3 +430,11 @@ fig = sns.catplot(
 
 # fig.set(xticklabels=['Asian', 'Black', 'White', 'Hispanic'])
 plt.show()
+# %%
+df_us = pd.read_pickle('df_us_pickle')
+gbo_race = df_us.groupby('race')
+corr_df = df_us.corr()
+gbo_race[cat_list]
+df_cat = df_us[cat_list]
+
+df_cat['race'].dropna()
