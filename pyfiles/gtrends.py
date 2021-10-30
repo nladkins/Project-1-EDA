@@ -53,9 +53,16 @@ fig = px.line(g2019, x='week', y=g2019.columns[1])
 fig.add_scatter(g2020, x='week', y=g2020.columns[1])
 pyo.plot(fig, cliponaxis=True)
 
-fig = px.line()
+# %%
+# fig = px.line()
 # g2019.to_excel('diffs.xlsx')
+
 
 df = pd.read_csv('data/comedgoogle.csv')
 fig = px.line(df, x='week', y=df.columns[1:], template='plotly_dark')
+
+fig.update_traces(mode="markers+lines", hovertemplate=None)
+fig.update_layout(hovermode="x")
+
 fig.write_html('interactive.html')
+pyo.plot(fig)
