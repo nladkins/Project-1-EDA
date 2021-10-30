@@ -6,6 +6,7 @@ import plotly.graph_objects as go
 import plotly.offline as pyo
 from datetime import datetime as dt
 
+# %%
 pyo.init_notebook_mode()
 
 g2019 = pd.read_csv('data/loseweight2019.csv', names=['week', 'pop'], parse_dates=True)[2:]
