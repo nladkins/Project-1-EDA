@@ -1,14 +1,9 @@
+# this is all a mess.
 # was using this for significance tests but it failed and im out of time
 
-import pandas.core.computation.ops
-import seaborn as sns
-import matplotlib.pyplot as plt
 import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
 import numpy as np
 import scipy.stats as st
-from _const import *
 
 df_raw = pd.read_excel('data/sources/manuscript_raw_data.xlsx')
 df_raw = df_raw[df_raw['country'] == 1]
@@ -20,7 +15,7 @@ len(df_raw)
 # df_raw = df_raw[df_raw['sex'] < 2]
 # data from
 # https://www.census.gov/quickfacts/fact/table/US/PST045219
-# %%
+
 pop_stats = {
         4.0: 0.763,
         1.0: 0.059,
@@ -56,7 +51,7 @@ cat_list = ['study_id',
             'contributed']
 
 df_raw.head()
-# %%
+
 df_raw['race'] = df_raw['race'].replace(
         {
                 0: np.nan,
@@ -67,8 +62,11 @@ df_raw['race'] = df_raw['race'].replace(
 ).dropna()
 
 gb_race = df_raw[cat_list].groupby('race').describe()
-# gb_race['pct']
+
+# multiindexed, so dripping it
 gb_race = gb_race.reset_index().droplevel(level=1, axis=1)
+
+# calc pct by race
 vals = df_raw['race'].value_counts()
 race_df = pd.DataFrame(vals)
 race_df['pct'] = race_df['race'] / sum(race_df.race)
@@ -77,7 +75,7 @@ race_df = race_df.reset_index()
 race_df.columns = ['code', 'race', 'pct']
 race_df = race_df[['code', 'pct']]
 race_df
-# %%
+
 from sklearn import preprocessing
 
 exp = list(pop_stats.values())
