@@ -1,7 +1,6 @@
 # this is all a mess.
 
 import pandas as pd
-import seaborn as sns
 import os
 import fcns as f
 
@@ -53,7 +52,6 @@ for k, v in zipped.items():
 
 # * testing stuff for norman
 import pandas as pd
-import fcns as f
 
 usdf = pd.read_pickle('data/df_raw_us.pickle')
 

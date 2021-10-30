@@ -282,10 +282,7 @@ for i in df_cat['race'].unique():
     except pd.core.computation.ops.UndefinedVariableError:
         continue
 
-# %%
-
-
-# %%
+# i made a plot with every cmap to see which i liked best
 # cmaps = ['Accent', 'Accent_r', 'Blues', 'Blues_r', 'BrBG', 'BrBG_r', 'BuGn', 'BuGn_r', 'BuPu', 'BuPu_r', 'CMRmap',
 #          'CMRmap_r', 'Dark2', 'Dark2_r', 'GnBu', 'GnBu_r', 'Greens', 'Greens_r', 'Greys', 'Greys_r', 'OrRd', 'OrRd_r',
 #          'Oranges', 'Oranges_r', 'PRGn', 'PRGn_r', 'Paired', 'Paired_r', 'Pastel1', 'Pastel1_r', 'Pastel2',
@@ -459,5 +456,3 @@ ax2 = sns.catplot(
 
 [ax1, ax2]
 plt.show()
-
-# %%

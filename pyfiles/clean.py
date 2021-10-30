@@ -3,13 +3,10 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import plotly.express as px
-import plotly.graph_objects as go
 import numpy as np
-import scipy.stats as st
 from _const import *
-import matplotlib as mpl
 
+# %%
 # read the files (pickles are faster)
 df = pd.read_pickle('df_compick')
 df_us = pd.read_csv('us_data_final.csv')
@@ -52,6 +49,7 @@ corrs = df_cat.groupby('race').corr()
 # cbar.set_ticks() = dividers
 
 
+# nrows, ncols, iterator
 a, b, c = 2, 2, 1
 fig, axs = plt.subplots(2, 2, figsize=(16, 16), sharex=True, sharey=True)
 # fig, ax = plt.subplots(figsize=(10, 8))
@@ -117,8 +115,11 @@ l = []
 # for el in l:
 #     gbo[(el, 'prev')] = gbo[el]['sum'] / gbo[el]['count']
 
+# %%
+# bar chart
+from _const import *
 
-# individual heatmaps
+df_cat = pd.read_pickle('data/pickledfiles/df_main_use_new')
 fig, ax = plt.subplots(figsize=(10, 6))
 df_cat['race'] = df_cat['race'].replace(race_dict)
 df_cat['sex'] = df_cat['sex'].replace({
@@ -135,9 +136,10 @@ ax = sns.histplot(
 )
 
 plt.title('Population Breakdown by Race and Sex')
-plt.legend(['Female', 'Male'])
-
-plt.savefig('demogs_by_race_gender.png', dpi=300)
+plt.legend(['Male', 'Female'])
+plt.show()
+# plt.savefig('demogs_by_race_gender.png', dpi=300)
+# for i in ax.get_xticklabels()
 
 idx = df_us[df_us['physical_overall'] != 5].index
 phys = df_us.loc[idx]
@@ -155,7 +157,6 @@ gb['race_g'] = gb['race'].replace(
 
 # sns.histplot(x='physical_overall',stat='count',data=gb, hue='race', multiple='stack')
 # plt.show()
-
 
 fig, ax = plt.subplots(figsize=(12, 12))
 v = df_cat['race'].value_counts()
