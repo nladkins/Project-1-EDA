@@ -3,6 +3,7 @@ import pandas as pd
 import pandas.core.computation.ops
 import seaborn as sns
 import matplotlib.pyplot as plt
+from _const import *
 
 # %%
 # region
@@ -235,18 +236,14 @@ df_us.to_pickle('df_us_pickle')
 df_cat = df_us[cat_list]
 df_cat['race'] = df_cat['race'].dropna()
 corrs = df_us[cat_list].groupby('race').corr()
+
 dividers = np.linspace(-1, 1, 6)
-
 df_list = []
-# %%
-for i in df_cat['race'].unique():
 
+for i in df_cat['race'].unique():
     my_colors = sns.color_palette('rocket', n_colors=5)
     try:
         corr_df = corrs.query(str(i))
-
-        # white_df = corrs.query('4')
-        print(corr_df)
         mask = np.zeros_like(corr_df)
         mask[np.triu_indices_from(mask)] = True
 
@@ -254,8 +251,6 @@ for i in df_cat['race'].unique():
         # im = ax.imshow(white_df)
         sns.heatmap(
                 corr_df,
-                # xticklabels=corr_df.columns,
-                # yticklabels=corr_df.columns,
                 annot=True,
                 cmap=my_colors,
                 square=True,
@@ -265,14 +260,14 @@ for i in df_cat['race'].unique():
                 vmax=1,
                 linewidths=0.5,
                 linecolor='lightgray'
-
         )
-
         colorbar = ax.collections[0].colorbar
         colorbar.set_label('Correlation')
         colorbar.set_ticks(dividers)
         colorbar.set_ticklabels(
-                ['strong negative', 'weak negative', 'no correlation', 'weak positive', 'strong positive'])
+                ['strong negative', 'weak negative',
+                 'no correlation', 'weak positive', 'strong positive']
+        )
         plt.title(f'Race: {race_dict[i].title()}\nn={v[i]}')
         plt.tight_layout()
         df_list.append(corr_df)

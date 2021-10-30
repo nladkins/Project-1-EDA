@@ -48,24 +48,23 @@ corrs = df_cat.groupby('race').corr()
 # set the colorbar ticks and tick labels
 # cbar.set_ticks() = dividers
 
-
 # nrows, ncols, iterator
 a, b, c = 2, 2, 1
+# noinspection PyTypeChecker
 fig, axs = plt.subplots(2, 2, figsize=(16, 16), sharex=True, sharey=True)
-# fig, ax = plt.subplots(figsize=(10, 8))
+
 v = df_cat['race'].value_counts()
 
 df_list = []
-
 # loop through for every race, get correlation vals, plot them on a heatmap
 for i in df_cat['race'].unique():
     try:
         corr_df = corrs.query(str(i))
         mask = np.zeros_like(corr_df)
         mask[np.triu_indices_from(mask)] = True
-        # plt.subplot(a, b, c)
+        plt.subplot(a, b, c)
 
-        hot = sns.heatmap(
+        sns.heatmap(
                 corr_df,
                 annot=True,
                 cbar=True,
@@ -78,12 +77,11 @@ for i in df_cat['race'].unique():
                 linewidths=0.1,
                 linecolor='lightgray',
         )
-
         # title is the race name and count
         plt.title(f'Race: {race_dict[i].title()}\nn={v[i]}')
         plt.tight_layout()
         plt.show()
-        # c += 1
+        c += 1
         df_list.append(corr_df)
     except pd.core.computation.ops.UndefinedVariableError:
         continue
@@ -94,10 +92,8 @@ plt.subplots_adjust(0.09, 0.12, 0.98, 0.9, 0.03, 0.08)
 # colorbar location
 cax = plt.axes([0.25, 0.96, 0.4, 0.025])
 sm = plt.cm.ScalarMappable(cmap='magma', norm=plt.Normalize(vmin=-1, vmax=1))
-
 plt.colorbar(sm, cax=cax, shrink=0.6, orientation='horizontal')
-
-# plt.savefig('heatmap_4plot.png', dpi=300)
+plt.savefig('heatmap_4plot.png', dpi=300)
 
 dfcom = pd.read_pickle('df_compick')
 gbo_sum = dfcom.groupby('race').agg(['sum']).droplevel(1, axis=1)
