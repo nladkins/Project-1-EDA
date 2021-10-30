@@ -8,9 +8,6 @@ import numpy as np
 import scipy.stats as st
 from _const import *
 
-# %%
-# ! here
-
 df = pd.read_pickle('df_compick')
 df_us = pd.read_csv('us_data_final.csv')
 df_us['sum_comorbs'] = np.nan
@@ -98,35 +95,34 @@ cax = plt.axes([0.25, 0.96, 0.4, 0.025])
 sm = plt.cm.ScalarMappable(cmap='magma', norm=plt.Normalize(vmin=-1, vmax=1))
 
 plt.colorbar(sm, cax=cax, shrink=0.6, orientation='horizontal')
-#
+
 # plt.savefig('heatmap_4plot.png', dpi=300)
-# %%
+
 
 dfcom = pd.read_pickle('df_compick')
 gbo_sum = dfcom.groupby('race').agg(['sum']).droplevel(1, axis=1)
 
 gbo_count = dfcom.groupby('race').agg(['count'])
-gbo_graph = sns.barplot(gbo_sum.loc[[1, 3, 4, 5]]);
+gbo_graph = sns.barplot(gbo_sum.loc[[1, 3, 4, 5]])
 plt.show()
 del gbo_graph['sum_comorbs']
-# %%
 
-# %%
 l = []
 
-[l.append(col[0])
- for col in gbo.columns if col[0] not in l]
+# [l.append(col[0])
+#  for col in gbo.columns if col[0] not in l]
+#
+# for el in l:
+#     gbo[(el, 'prev')] = gbo[el]['sum'] / gbo[el]['count']
 
-for el in l:
-    gbo[(el, 'prev')] = gbo[el]['sum'] / gbo[el]['count']
 
-# %%
 fig, ax = plt.subplots(figsize=(10, 6))
 df_cat['race'] = df_cat['race'].replace(race_dict)
 df_cat['sex'] = df_cat['sex'].replace({
         0: 'Female',
         1: 'Male'
 })
+
 ax = sns.histplot(
         data=df_cat,
         x='race',
@@ -140,10 +136,9 @@ plt.legend(['Female', 'Male'])
 
 plt.savefig('demogs_by_race_gender.png', dpi=300)
 
-# %%
 idx = df_us[df_us['physical_overall'] != 5].index
 phys = df_us.loc[idx]
-# %%
+
 gb = phys.groupby(['physical_overall', 'race']).agg('count')
 gb = gb.reset_index()
 gb['race_g'] = gb['race'].replace(
@@ -157,7 +152,7 @@ gb['race_g'] = gb['race'].replace(
 
 # sns.histplot(x='physical_overall',stat='count',data=gb, hue='race', multiple='stack')
 # plt.show()
-# %%
+
 
 fig, ax = plt.subplots(figsize=(12, 12))
 v = df_cat['race'].value_counts()
