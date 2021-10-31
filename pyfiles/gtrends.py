@@ -1,4 +1,3 @@
-# %%
 import matplotlib.pyplot as plt
 import pandas as pd
 import plotly.express as px
@@ -6,7 +5,7 @@ import plotly.graph_objects as go
 import plotly.offline as pyo
 from datetime import datetime as dt
 
-# %%
+# getting and graphing google trends data
 pyo.init_notebook_mode()
 
 g2019 = pd.read_csv('data/loseweight2019.csv', names=['week', 'pop'], parse_dates=True)[2:]
@@ -18,13 +17,13 @@ pd.to_datetime(g2020['week'])
 g2019['pop'] = g2019['pop'].astype('float')
 g2020['pop'] = g2020['pop'].astype('float')
 
+# looking for interesting surges and wanes
 gdiff = g2020['pop'] - g2019['pop']
 gdiff = gdiff.reset_index()
 gdiff.columns = ['week', 'diff']
-# %%
+
 fig = px.bar(gdiff, gdiff['week'], gdiff['diff'])
 pyo.plot(fig)
-# %%
 
 trace0 = go.Scatter(
         x=g2019['week'],

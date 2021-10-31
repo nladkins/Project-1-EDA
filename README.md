@@ -1,13 +1,11 @@
 # Project-1-EDA
 
-Hey, y'all.
-I added all the work I did last night into the main branch.
+This repository reflects the effort of a group project where we analyzed both CDC and Stanford University data regarding COVID-19.  We specifically 
+focused on how COVID-19 impacted the habits of individuals with pre-existing conditions who are more vulnerable to negative outcomes from the virus.  
+The Stanford Data includes separate surveys taken evaluating individual's physical well being, communication, and mental health well being before and 
+during COVID.  This data was not consistent with best practices such as using "0" for "No" responses, etc., so a lot of work was done to scrub the data 
+and approach the work from multiple angles.  Therefore, the repository includes a number of data frames and code that focused on the filtering of data, 
+dropping null responses, dropping incomplete surveys, etc.  There is a PowerPoint included that provides the results of this analysis.  
 
-The data folder contains all of the stuff I made and have been using (the csv files, the excel files, etc.)
-
-I also uploaded two of the scripts I wrote.
-fcns.py is where I'm going to write all my functions. It's there so that we can all use it and write new functions in as needed.
-
-prep_work.py is just the code I wrote to start manipulating data and whatnot. I added it just to show y'all how I went about doing everything.
-
-NLA:  The work I have done is loaded in the "Project-1-EDA/Sandbox" branch.  I did not want to commit anything to main, so I have been committing data there.  Work in progress.  https://github.com/nladkins/Project-1-EDA/tree/Project-1-EDA/Sandbox
+To accomplish this work, the team developed the subject repository as well as a sandbox branch to "play" in.  The major pieces of code and data frames 
+were pulled into the main branch.  The main branch includes data frames that were generated, visual outputs that were developed etc.  
